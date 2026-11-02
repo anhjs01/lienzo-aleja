@@ -430,6 +430,64 @@
   .stage-toolbar .stage-actions{padding-bottom:6px;scroll-snap-type:x proximity}
   .stage-toolbar .stage-actions .storage-action{scroll-snap-align:start}
 }
+
+/* CHECKPOINT-01: Filters Dock contenido y con desplazamiento exclusivamente vertical */
+#filters-modal{
+ box-sizing:border-box;
+ overflow-x:hidden!important;
+ overflow-y:auto!important;
+ overscroll-behavior-x:none;
+ overscroll-behavior-y:contain;
+ touch-action:pan-y;
+}
+#filters-modal *,
+#filters-modal *::before,
+#filters-modal *::after{box-sizing:border-box;min-width:0}
+#filters-modal .filter-presets{
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:8px;
+ width:100%;
+}
+#filters-modal .filter-preset-card{
+ width:100%;
+ min-width:0;
+ max-width:100%;
+ overflow:hidden;
+}
+#filters-modal .filter-swatch{width:100%;max-width:100%;min-width:0}
+#filters-modal .filter-grid,
+#filters-modal .adjustments-section .filter-grid{
+ grid-template-columns:minmax(0,1fr);
+ width:100%;
+ min-width:0;
+ gap:10px;
+}
+#filters-modal .filter-control,
+#filters-modal .filter-control span,
+#filters-modal .filter-control input,
+#filters-modal .filter-control output{
+ min-width:0;
+ max-width:100%;
+}
+#filters-modal .filter-control input{display:block;width:100%}
+#filters-modal .modal-head,
+#filters-modal .filter-actions{min-width:0;max-width:100%}
+#filters-modal .filter-actions{display:flex;flex-wrap:wrap;gap:7px}
+@media(min-width:701px){
+ #filters-modal{left:auto;right:10px;max-width:calc(100vw - var(--left,76px) - 20px)}
+}
+@media(max-width:1000px) and (min-width:701px){
+ #filters-modal{left:auto;right:8px;width:calc(var(--right,260px) - 16px);max-width:calc(100vw - var(--left,66px) - 16px)}
+ #filters-modal .filter-presets{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+ #filters-modal .filter-swatch{height:28px}
+}
+@media(max-width:700px){
+ #filters-modal{left:10px;right:10px;width:auto;max-width:none;overflow-x:hidden!important;overflow-y:auto!important;touch-action:pan-y}
+ #filters-modal .filter-presets{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
+ #filters-modal .filter-swatch{height:30px}
+ #filters-modal .filter-grid,
+ #filters-modal .adjustments-section .filter-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+}
 </style>
 </head>
 <body>
