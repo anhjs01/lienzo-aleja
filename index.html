@@ -1182,7 +1182,7 @@ function exportDesign(){
    ox.scale((l.flip==='x'||l.flip==='both')?-1:1,(l.flip==='y'||l.flip==='both')?-1:1);
    ox.translate(-l.w/2,-l.h/2);
    const old=ctx;ctx=ox;
-   try{drawLayer(l,exportBackground);drawGrainOverlay(ox,l.w,l.h,filterValues(l).grain)}finally{ctx=old}
+   try{drawLayer(l,exportBackground);drawGrainOverlay(ox,l.w,l.h,filterValues(l).grain);applyLayerErasures(ox,l)}finally{ctx=old}
   }catch(e){failedLayers++;console.error('No se pudo dibujar la capa al exportar:',l.id,e)}
   finally{ox.restore()}
  }
